@@ -148,5 +148,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # base url
 BASE_URL = os.getenv('BASE_URL')
 
-SHORT_URL_LENGTH = os.getenv('SHORT_URL_LENGTH')
+SHORT_CODE_LENGTH = os.getenv('SHORT_CODE_LENGTH')
 NUMBER_OF_BYTES = os.getenv('NUMBER_OF_BYTES')

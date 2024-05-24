@@ -1,13 +1,10 @@
 import logging
 import string
-import time
 import secrets
 from rest_framework.views import APIView
 from minify.models import UrlMapping
 from rest_framework import status
-from rest_framework.response import Response
 from abc import ABC, abstractmethod
-
 from url_shortener import settings
 from utils.response_helper import response
 from utils.code_objects import REQUEST_SUCCESS, REQUEST_FAILED, INVALID_REQUEST_DATA
@@ -40,7 +37,7 @@ class MinifyView(APIView):
             num, remainder = divmod(num, pool_length)
             self.short_code += MinifyView.ALPHANUMERIC_POOL[remainder]
 
-        return self.short_code[:int(settings.SHORT_URL_LENGTH)]
+        return self.short_code[:int(settings.SHORT_CODE_LENGTH)]
 
     def insert_record(self, long_url: str):
         self.model.objects.create_record(long_url=long_url, short_code=self.short_code)
