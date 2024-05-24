@@ -1,6 +1,6 @@
 from django.utils import timezone
 from django.db import models
-from manager import UrlMappingManager
+from minify.manager import UrlMappingManager
 
 
 def get_expires_at():
