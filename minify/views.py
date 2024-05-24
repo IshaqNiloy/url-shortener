@@ -19,6 +19,7 @@ logger = logging.getLogger(__name__)
 #     @abstractmethod
 #     def
 
+
 class MinifyView(APIView):
     ALPHANUMERIC_POOL = string.ascii_letters + string.digits
 
