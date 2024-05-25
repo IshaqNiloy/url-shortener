@@ -13,7 +13,7 @@ class UrlMapping(models.Model):
     short_code = models.CharField(max_length=15, unique=True, null=False)
     total_visits = models.PositiveIntegerField(default=0)
     is_active = models.BooleanField(default=True)
-    last_visit = models.DateTimeField(null=True)
+    last_visit = models.DateTimeField(null=True, blank=True)
     expires_at = models.DateTimeField(default=get_expires_at, null=False)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(default=timezone.now)
