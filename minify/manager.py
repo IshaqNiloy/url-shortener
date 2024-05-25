@@ -8,11 +8,12 @@ class UrlMappingManager(models.Manager):
         self.create(long_url=long_url, short_code=short_code)
 
     def update_record_and_get_long_url(self, short_code: str) -> Union[str, None]:
-        record = self.filter(short_code=short_code, is_active=True)[0]
+        record = self.filter(short_code=short_code, is_active=True)
 
         if not record:
             return None
 
+        record = record[0]
         with transaction.atomic():
             record.total_visits += 1
             record.last_visit = timezone.now()

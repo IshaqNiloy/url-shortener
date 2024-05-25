@@ -19,3 +19,9 @@ INVALID_REQUEST_DATA = {
     'data': dict()
 }
 
+DATA_NOT_FOUND = {
+    'code': 'US_DNF_400',
+    'message': 'data not found',
+    'lang': 'en',
+    'data': dict()
+}

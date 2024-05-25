@@ -1,20 +1,16 @@
 import logging
+import random
 import string
 import secrets
 from rest_framework.views import APIView
 from minify.models import UrlMapping
 from rest_framework import status
-from abc import ABC, abstractmethod
 from url_shortener import settings
 from utils.response_helper import response
 from utils.code_objects import REQUEST_SUCCESS, REQUEST_FAILED, INVALID_REQUEST_DATA
 from minify.serializer import MinifySerializer
 
 logger = logging.getLogger(__name__)
-
-# class (ABC):
-#     @abstractmethod
-#     def
 
 
 class MinifyView(APIView):
@@ -37,7 +33,12 @@ class MinifyView(APIView):
             num, remainder = divmod(num, pool_length)
             self.short_code += MinifyView.ALPHANUMERIC_POOL[remainder]
 
-        return self.short_code[:int(settings.SHORT_CODE_LENGTH)]
+        # shuffles the characters in the code to make it more unique
+        char_list = list(self.short_code)
+        random.shuffle(char_list)
+        self.short_code = ''.join(char_list)[:int(settings.SHORT_CODE_LENGTH)]
+
+        return self.short_code
 
     def insert_record(self, long_url: str):
         self.model.objects.create_record(long_url=long_url, short_code=self.short_code)

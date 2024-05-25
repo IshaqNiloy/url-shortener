@@ -5,7 +5,7 @@ from minify.models import UrlMapping
 from .serializer import RedirectionViewSerializer
 import logging
 from utils.response_helper import response
-from utils.code_objects import REQUEST_FAILED, INVALID_REQUEST_DATA
+from utils.code_objects import REQUEST_FAILED, INVALID_REQUEST_DATA, DATA_NOT_FOUND
 from rest_framework import status
 
 logger = logging.getLogger(__name__)
@@ -32,7 +32,7 @@ class RedirectionView(APIView):
                 logger.info(f'short code: {short_code} -> long url: {self.long_url}')
 
                 if not self.long_url:
-                    return response(code=REQUEST_FAILED, status=status.HTTP_400_BAD_REQUEST)
+                    return response(code=DATA_NOT_FOUND, status=status.HTTP_404_NOT_FOUND)
 
                 return HttpResponseRedirect(self.long_url)
             else:
