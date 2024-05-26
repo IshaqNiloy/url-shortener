@@ -37,7 +37,7 @@ docker-compose run web python manage.py makemigrations
 docker-compose run web python manage.py migrate
 ```
 
-#### 7. Access the Application:
+#### 7. Access the API documentation:
 Open your web browser and navigate to http://localhost:8000/minify/doc/ for comprehensive API documentation.
 
 ### API Endpoints
