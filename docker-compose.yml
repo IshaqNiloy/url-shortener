@@ -34,7 +34,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: celery -A url_shortener worker --loglevel=info
+    command: celery -A celery_app worker --loglevel=info
     env_file:
       - .env
     volumes:
@@ -47,7 +47,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: celery -A url_shortener beat --loglevel=info
+    command: celery -A celery_app beat --loglevel=info
     env_file:
       - .env
     volumes:
