@@ -1,16 +1,34 @@
 import logging
+import os
 import random
-import string
 import secrets
-from rest_framework.views import APIView
-from minify.models import UrlMapping
+import string
+
+from django.http import FileResponse, Http404
 from rest_framework import status
-from url_shortener import settings
-from utils.response_helper import response
-from utils.code_objects import REQUEST_SUCCESS, REQUEST_FAILED, INVALID_REQUEST_DATA
+from rest_framework.views import APIView
+
+from minify.models import UrlMapping
 from minify.serializer import MinifySerializer
+from url_shortener import settings
+from utils.code_objects import REQUEST_SUCCESS, REQUEST_FAILED, INVALID_REQUEST_DATA
+from utils.response_helper import response
 
 logger = logging.getLogger(__name__)
+
+
+class PdfView(APIView):
+    def __init__(self):
+        super().__init__()
+        self.filename = 'api_doc.pdf'
+
+    def get(self, request):
+        pdf_path = os.path.join('pdfs', self.filename)
+
+        if os.path.exists(pdf_path):
+            return FileResponse(open(pdf_path, 'rb'), content_type='application/pdf')
+        else:
+            raise Http404("PDF not found")
 
 
 class MinifyView(APIView):

@@ -1,12 +1,14 @@
-from typing import Union
-from django.http import HttpResponseRedirect
-from rest_framework.views import APIView
-from minify.models import UrlMapping
-from .serializer import RedirectionViewSerializer
 import logging
-from utils.response_helper import response
-from utils.code_objects import REQUEST_FAILED, INVALID_REQUEST_DATA, DATA_NOT_FOUND
+from typing import Union
+
+from django.http import HttpResponseRedirect
 from rest_framework import status
+from rest_framework.views import APIView
+
+from minify.models import UrlMapping
+from utils.code_objects import REQUEST_FAILED, INVALID_REQUEST_DATA, DATA_NOT_FOUND
+from utils.response_helper import response
+from .serializer import RedirectionViewSerializer
 
 logger = logging.getLogger(__name__)
 

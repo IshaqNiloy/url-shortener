@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
-from url_shortener import settings
-from minify.models import UrlMapping
 from rest_framework import status
+
+from minify.models import UrlMapping
 from utils.code_objects import INVALID_REQUEST_DATA, DATA_NOT_FOUND
 from .views import RedirectionView
 
@@ -20,7 +20,7 @@ class RedirectionViewTestCase(TestCase):
     def test_db_operations(self):
         redirection_obj = RedirectionView()
         long_url = redirection_obj.db_operations(short_code=self.short_code)
-        # gets updated object from the database
+        # gets updated object from the default database
         self.url_mapping_obj.refresh_from_db()
 
         self.assertEqual(self.long_url, long_url)  # assert long url

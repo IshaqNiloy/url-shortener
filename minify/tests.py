@@ -1,9 +1,10 @@
 from django.test import TestCase, Client
+from rest_framework import status
+
 from url_shortener import settings
+from utils.code_objects import INVALID_REQUEST_DATA
 from .models import UrlMapping
 from .views import MinifyView
-from rest_framework import status
-from utils.code_objects import REQUEST_FAILED, INVALID_REQUEST_DATA
 
 
 class MinifyViewTestCase(TestCase):

@@ -26,7 +26,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'minify',
     'celery_app',
-    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -124,23 +123,23 @@ LOGGING = {
     },
 }
 
-CELERY_BROKER_URL = 'redis://url_shortener_redis_1:6379/0'
-CELERY_RESULT_BACKEND = 'redis://url_shortener_redis_1:6379/0'
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
+CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND')
 
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'UTC'
+CELERY_ACCEPT_CONTENT = [os.getenv('CELERY_ACCEPT_CONTENT')]
+CELERY_TASK_SERIALIZER = os.getenv('CELERY_TASK_SERIALIZER')
+CELERY_RESULT_SERIALIZER = os.getenv('CELERY_RESULT_SERIALIZER')
+CELERY_TIMEZONE = os.getenv('CELERY_TIMEZONE')
 
 # Internationalization
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = os.getenv('LANGUAGE_CODE')
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = os.getenv('TIME_ZONE')
 
-USE_I18N = True
+USE_I18N = os.getenv('USE_I18N')
 
-USE_TZ = True
+USE_TZ = os.getenv('USE_TZ')
 
 STATIC_URL = os.getenv('STATIC_URL')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
