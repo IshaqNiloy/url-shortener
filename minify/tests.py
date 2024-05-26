@@ -51,10 +51,6 @@ class MinifyViewTestCase(TestCase):
         self.assertIn('short_url', response.json().get('data'))  # assert short url key in data
         self.assertEqual(short_url, settings.BASE_URL+url_mapping_obj.short_code)  # assert short url
 
-    # test failed response
-    def test_failed_response(self):
-        pass
-
     # tests invalid request data response
     def test_invalid_request_data_response(self):
         request_payload = {

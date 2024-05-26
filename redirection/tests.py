@@ -33,9 +33,6 @@ class RedirectionViewTestCase(TestCase):
         self.assertEqual(response.status_code, status.HTTP_302_FOUND)  # assert status code
         self.assertIn(self.long_url, response.headers['Location'])  # assert destination url
 
-    def test_failed_response(self):
-        pass
-
     # tests data not found response
     def test_data_not_found_response(self):
         response = self.client.get('/HEcq1C')
